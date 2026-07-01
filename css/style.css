@@ -26,15 +26,23 @@ body {
     color: white;
 }
 
+.w-nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .w-nav-breadcrumb {
     font-family: "Roboto Mono", "Consolas", monospace;
     text-transform: uppercase;
-    text-decoration: none;
-    color: #e0e0e0;
-    transition: color 0.1s linear;
 }
 
-a.w-nav-breadcrumb:hover {
+.w-nav-container a {
+    color: #e0e0e0;
+    transition: color 0.1s linear;
+    text-decoration: none;
+}
+
+.w-nav-container a:hover {
     color: white;
 }
 
@@ -43,6 +51,11 @@ a.w-nav-breadcrumb:after {
     font-size: 1.35em;
     line-height: 0.65;
     color: #e0e0e0;
+}
+
+.w-nav-social {
+    line-height: 1;
+    font-size: 1.2em;
 }
 
 .w-section-hero {
@@ -117,4 +130,10 @@ hr {
     .w-hero-title {
         margin-block-start: 0;
     }
+}
+
+/* ----- INCLUDES ----- */
+
+.s-icon:not(:last-child) {
+    margin-inline-end: 8px;
 }

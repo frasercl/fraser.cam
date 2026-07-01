@@ -2,9 +2,14 @@
 layout: default
 ---
 <header class="w-section w-section-nav">
-    <div>
-        <a class="w-nav-breadcrumb" href="/">Cameron Fraser</a>
-        <a class="w-nav-breadcrumb" href="/words">Words</a>
+    <div class="w-nav-container">
+        <span>
+            <a class="w-nav-breadcrumb" href="/">Cameron Fraser</a>
+            <a class="w-nav-breadcrumb" href="/words">Words</a>
+        </span>
+        <span class="w-nav-social">
+            {% include social.html %}
+        </span>
     </div>
 </header>
 <article>
