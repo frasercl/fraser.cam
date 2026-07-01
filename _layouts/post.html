@@ -19,13 +19,17 @@ layout: default
             {%- if page.subtitle %}
                 <p class="w-hero-subtitle">{{ page.subtitle }}</p>
             {% endif -%}
-            {%- if page.header_image %}
-                <img src="{{ page.header_image }}">
+            {%- if page.hero_image %}
+                <div class="w-hero-img">
+                    <img src="{{ page.hero_image }}">
+                </div>
             {% endif -%}
             {%- if page.date %}
-                <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
-                    {{ page.date | date_to_long_string }}
-                </time>
+                <div>
+                    <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
+                        {{ page.date | date_to_long_string }}
+                    </time>
+                </div>
             {% endif -%}
         </div>
     </div>
