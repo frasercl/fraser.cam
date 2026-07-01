@@ -143,7 +143,7 @@ a.w-nav-breadcrumb:after {
 /* ----- PAGE CONTENT ----- */
 
 h1 {
-    font-size: 3.5em;
+    font-size: 3.2em;
 }
 
 h2 {
@@ -153,6 +153,19 @@ h2 {
 h1, h2 {
     font-family: "Lora", serif;
     font-weight: 500;
+}
+
+/* push fragment links down so the heading is visible under the nav header */
+article h2:before,
+article h3:before,
+article h4:before,
+article h5:before,
+article h6:before {
+    display: block;
+    content: "";
+    margin-top: -3.5em;
+    height: 3.5em;
+    visibility: hidden;
 }
 
 p, blockquote {
