@@ -11,6 +11,7 @@ layout: default
             {% include social.html %}
         </span>
     </div>
+    <div class="w-nav-title" aria-hidden="true">{{ page.title }}</div>
 </header>
 <article>
     <div class="w-section w-section-hero">
@@ -49,3 +50,19 @@ layout: default
         </div>
     </div>
 </article>
+<script defer>
+    const SHOW_TITLE_CLASS = "w-nav-title-show";
+
+    const navTitle = document.querySelector(".w-nav-title");
+    const title = document.querySelector(".w-hero-title");
+
+    new IntersectionObserver(([entry]) => {
+        if (entry.intersectionRatio <= 0) {
+            if (!navTitle.classList.contains(SHOW_TITLE_CLASS)) {
+                navTitle.classList.add(SHOW_TITLE_CLASS);
+            }
+        } else if (navTitle.classList.contains(SHOW_TITLE_CLASS)) {
+            navTitle.classList.remove(SHOW_TITLE_CLASS);
+        }
+    }).observe(title);
+</script>
