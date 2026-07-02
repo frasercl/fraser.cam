@@ -56,13 +56,18 @@ layout: default
     const navTitle = document.querySelector(".w-nav-title");
     const title = document.querySelector(".w-hero-title");
 
+    let titleShown = false;
+
     new IntersectionObserver(([entry]) => {
         if (entry.intersectionRatio <= 0) {
-            if (!navTitle.classList.contains(SHOW_TITLE_CLASS)) {
+            if (!titleShown) {
+                console.log("boo");
                 navTitle.classList.add(SHOW_TITLE_CLASS);
+                titleShown = true;
             }
-        } else if (navTitle.classList.contains(SHOW_TITLE_CLASS)) {
+        } else if (titleShown) {
             navTitle.classList.remove(SHOW_TITLE_CLASS);
+            titleShown = false;
         }
     }).observe(title);
 </script>
