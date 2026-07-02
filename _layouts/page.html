@@ -1,0 +1,53 @@
+---
+layout: base
+---
+<header class="b-section p-section-nav">
+    <div class="p-nav-container">
+        <span>
+            {%- assign crumbs = page.url | remove: "/index.html" | split: "/" %}
+            {%- if crumbs.size == 1 -%}
+                <span class="p-nav-breadcrumb">{{ site.title }}</span>
+            {%- else -%}
+                <a class="p-nav-breadcrumb">{{ site.title }}</a>
+            {%- endif -%}
+            {%- for crumb in crumbs offset: 1 -%}
+                {%- if forloop.last -%}
+                    {%- unless page.large_title -%}
+                        <span class="p-nav-breadcrumb">{{ page.title | default: crumb }}</span>
+                    {%- endunless -%}
+                {%- else -%}
+                    <a class="p-nav-breadcrumb">{{ crumb }}</a>
+                {%- endif -%}
+            {% endfor -%}
+        </span>
+        <span class="p-nav-social">
+            {% include social.html %}
+        </span>
+    </div>
+    {%- if page.large_title and page.title %}
+        <div class="p-nav-title" aria-hidden="true">{{ page.title }}</div>
+    {% endif -%}
+</header>
+<main>
+    {{ content }}
+</main>
+{%- if page.large_title %}
+    <script defer>
+        const SHOW_TITLE_CLASS = "p-nav-title-show";
+        const navTitle = document.querySelector(".p-nav-title");
+        const title = document.querySelector(".p-title");
+        let titleShown = false;
+
+        new IntersectionObserver(([entry]) => {
+            if (entry.intersectionRatio <= 0) {
+                if (!titleShown) {
+                    navTitle.classList.add(SHOW_TITLE_CLASS);
+                    titleShown = true;
+                }
+            } else if (titleShown) {
+                navTitle.classList.remove(SHOW_TITLE_CLASS);
+                titleShown = false;
+            }
+        }).observe(title);
+    </script>
+{%- endif %}

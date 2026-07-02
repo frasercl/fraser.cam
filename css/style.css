@@ -9,6 +9,8 @@
     --color-trans-duration: 0.2s;
 }
 
+/* ----- BASE ----- */
+
 body {
     font-family: "Roboto", "Arial", sans-serif;
     font-optical-sizing: auto;
@@ -19,18 +21,19 @@ body {
     transition: all var(--color-trans-duration);
 }
 
-/* ----- PAGE LAYOUT ----- */
-
-.w-section {
+.b-section {
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.w-section > div {
+.b-section > div {
     max-width: var(--section-width);
     margin: 0 auto;
 }
 
-.w-section-nav {
+/* ----- PAGE ----- */
+
+.p-section-nav {
     --section-width: 1400px;
     position: fixed;
     width: 100%;
@@ -42,27 +45,27 @@ body {
     transition: all var(--color-trans-duration);
 }
 
-.w-nav-container {
+.p-nav-container {
     display: flex;
     justify-content: space-between;
 }
 
-.w-nav-breadcrumb {
+.p-nav-breadcrumb {
     font-family: "Roboto Mono", "Consolas", monospace;
     text-transform: uppercase;
 }
 
-.w-nav-container a {
+.p-nav-container a {
     color: var(--color-nav-text);
     transition: color var(--color-trans-duration);
     text-decoration: none;
 }
 
-.w-nav-container a:hover {
+.p-nav-container a:hover {
     color: var(--color-nav-active);
 }
 
-a.w-nav-breadcrumb:after {
+a.p-nav-breadcrumb:after {
     content: " » ";
     font-size: 1.35em;
     line-height: 0.65;
@@ -70,13 +73,13 @@ a.w-nav-breadcrumb:after {
     transition: color var(--color-trans-duration);
 }
 
-.w-nav-social {
+.p-nav-social {
     line-height: 1;
     font-size: 1.2em;
     flex-shrink: 0;
 }
 
-.w-nav-title {
+.p-nav-title {
     font-family: "Lora", serif;
     font-weight: 500;
     font-size: 1.5em;
@@ -86,10 +89,16 @@ a.w-nav-breadcrumb:after {
     transition: padding-block-start 0.3s, max-height 0.3s;
 }
 
-.w-nav-title.w-nav-title-show {
+.p-nav-title.p-nav-title-show {
     padding-block-start: 0.2em;
     max-height: 1.5em;
 }
+
+main {
+    padding-block-start: 3em;
+}
+
+/* ----- POST ----- */
 
 .w-section-hero {
     --section-width: 900px;
@@ -131,11 +140,31 @@ a.w-nav-breadcrumb:after {
     --section-width: 700px;
 }
 
-/* ----- PAGE CONTENT ----- */
-
-main {
-    padding-block-start: 3em;
+.w-content.w-dropcap-init > p:first-child:first-letter,
+.w-content.w-dropcap-section > hr + p:first-letter {
+    font-family: "Lora", serif;
+    font-weight: 500;
+    font-size: 3.5em;
+    float: left;
+    margin: 0.1em 0.1em 0.1em 0;
+    line-height: 0.65;
+    color: var(--color-text-header);
 }
+
+/* push fragment links down so the heading is visible under the page header */
+article h2:before,
+article h3:before,
+article h4:before,
+article h5:before,
+article h6:before {
+    display: block;
+    content: "";
+    margin-top: -3.5em;
+    height: 3.5em;
+    visibility: hidden;
+}
+
+/* ----- PAGE CONTENT ----- */
 
 h1 {
     font-size: 3.2em;
@@ -154,19 +183,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-header);
 }
 
-/* push fragment links down so the heading is visible under the page header */
-article h2:before,
-article h3:before,
-article h4:before,
-article h5:before,
-article h6:before {
-    display: block;
-    content: "";
-    margin-top: -3.5em;
-    height: 3.5em;
-    visibility: hidden;
-}
-
 p, blockquote {
     line-height: 1.6;
 }
@@ -177,23 +193,12 @@ hr {
     margin: 2em 0;
 }
 
-.w-content.w-dropcap-init > p:first-child:first-letter,
-.w-content.w-dropcap-section > hr + p:first-letter {
-    font-family: "Lora", serif;
-    font-weight: 500;
-    font-size: 3.5em;
-    float: left;
-    margin: 0.1em 0.1em 0.1em 0;
-    line-height: 0.65;
-    color: var(--color-text-header);
-}
-
 @media print {
-    .w-section-nav {
+    .p-section-nav {
         position: static;
     }
 
-    .w-nav-social {
+    .p-nav-social {
         display: none;
     }
 
@@ -202,7 +207,7 @@ hr {
     }
 }
 
-/* ----- INCLUDES ----- */
+/* ----- SOCIAL ----- */
 
 .s-icon:not(:last-child) {
     margin-inline-end: 8px;

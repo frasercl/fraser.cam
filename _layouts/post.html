@@ -1,76 +1,40 @@
 ---
-layout: default
+layout: page
 ---
-<header class="w-section w-section-nav">
-    <div class="w-nav-container">
-        <span>
-            <a class="w-nav-breadcrumb" href="/">Cameron Fraser</a>
-            <a class="w-nav-breadcrumb" href="/words">Words</a>
-        </span>
-        <span class="w-nav-social">
-            {% include social.html %}
-        </span>
+<article>
+    <div class="b-section w-section-hero">
+        <div>
+            <h1 class="p-title w-hero-title">{{ page.title }}</h1>
+            {%- if page.subtitle %}
+                <p class="w-hero-subtitle">{{ page.subtitle }}</p>
+            {% endif -%}
+            {%- if page.hero_image %}
+                <div class="w-hero-img">
+                    <img src="{{ page.hero_image }}">
+                </div>
+            {% endif -%}
+            {%- if page.date %}
+                <div>
+                    <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
+                        {{ page.date | date_to_long_string }}
+                    </time>
+                </div>
+            {% endif -%}
+        </div>
     </div>
-    <div class="w-nav-title" aria-hidden="true">{{ page.title }}</div>
-</header>
-<main>
-
-    <article>
-        <div class="w-section w-section-hero">
-            <div>
-                <h1 class="w-hero-title">{{ page.title }}</h1>
-                {%- if page.subtitle %}
-                    <p class="w-hero-subtitle">{{ page.subtitle }}</p>
-                {% endif -%}
-                {%- if page.hero_image %}
-                    <div class="w-hero-img">
-                        <img src="{{ page.hero_image }}">
-                    </div>
-                {% endif -%}
-                {%- if page.date %}
-                    <div>
-                        <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
-                            {{ page.date | date_to_long_string }}
-                        </time>
-                    </div>
-                {% endif -%}
-            </div>
+    <div class="b-section w-section-content">
+        {%- case page.dropcap %}
+            {%- when "all" -%}
+                {%- assign dropcap_class = " w-dropcap-init w-dropcap-section" -%}
+            {%- when "init" -%}
+                {%- assign dropcap_class = " w-dropcap-init" -%}
+            {%- when "section" -%}
+                {%- assign dropcap_class = " w-dropcap-section" -%}
+            {%- else -%}
+                {%- assign dropcap_class = "" -%}
+        {% endcase -%}
+        <div class="w-content{{ dropcap_class }}">
+            {{ content }}
         </div>
-        <div class="w-section w-section-content">
-            {%- case page.dropcap %}
-                {%- when "all" -%}
-                    {%- assign dropcap_class = " w-dropcap-init w-dropcap-section" -%}
-                {%- when "init" -%}
-                    {%- assign dropcap_class = " w-dropcap-init" -%}
-                {%- when "section" -%}
-                    {%- assign dropcap_class = " w-dropcap-section" -%}
-                {%- else -%}
-                    {%- assign dropcap_class = "" -%}
-            {% endcase -%}
-            <div class="w-content{{ dropcap_class }}">
-                {{ content }}
-            </div>
-        </div>
-    </article>
-</main>
-<script defer>
-    const SHOW_TITLE_CLASS = "w-nav-title-show";
-
-    const navTitle = document.querySelector(".w-nav-title");
-    const title = document.querySelector(".w-hero-title");
-
-    let titleShown = false;
-
-    new IntersectionObserver(([entry]) => {
-        if (entry.intersectionRatio <= 0) {
-            if (!titleShown) {
-                console.log("boo");
-                navTitle.classList.add(SHOW_TITLE_CLASS);
-                titleShown = true;
-            }
-        } else if (titleShown) {
-            navTitle.classList.remove(SHOW_TITLE_CLASS);
-            titleShown = false;
-        }
-    }).observe(title);
-</script>
+    </div>
+</article>

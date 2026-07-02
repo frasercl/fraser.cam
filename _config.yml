@@ -1,4 +1,4 @@
-title: Cameron Fraser's Internet Place
+title: Cameron Fraser
 description: >-
   This web site is under construction. It will eventually contain some good
   content put there by Cameron Fraser, a programmer and urbanist from Seattle.
@@ -18,3 +18,4 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      large_title: true
