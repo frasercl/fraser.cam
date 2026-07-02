@@ -1,13 +1,3 @@
-body {
-    font-family: "Roboto", "Arial", sans-serif;
-    font-optical-sizing: auto;
-    margin: 0;
-    font-size: 1.05em;
-    background-color: var(--color-bg);
-    color: var(--color-text-body);
-    transition: color 0.2s linear, background-color 0.2s linear;
-}
-
 :root {
     --color-bg:             light-dark( #f7f7f7, #131212);
     --color-text-body:      light-dark( #202024, #999999);
@@ -16,6 +6,17 @@ body {
     --color-nav-bg:         light-dark( #000000, #303030);
     --color-nav-text:       light-dark( #d0d0d0, #d0d0d0);
     --color-nav-active:     light-dark( #ffffff, #ffffff);
+    --color-trans-duration: 0.2s;
+}
+
+body {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    font-size: 1.05em;
+    background-color: var(--color-bg);
+    color: var(--color-text-body);
+    transition: all var(--color-trans-duration);
 }
 
 /* ----- PAGE LAYOUT ----- */
@@ -31,12 +32,14 @@ body {
 
 .w-section-nav {
     --section-width: 1400px;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     font-weight: bold;
     padding: 15px 20px;
     background-color: var(--color-nav-bg);
     color: var(--color-nav-text);
+    transition: all var(--color-trans-duration);
 }
 
 .w-nav-container {
@@ -51,7 +54,7 @@ body {
 
 .w-nav-container a {
     color: var(--color-nav-text);
-    transition: color 0.1s linear;
+    transition: color var(--color-trans-duration);
     text-decoration: none;
 }
 
@@ -64,6 +67,7 @@ a.w-nav-breadcrumb:after {
     font-size: 1.35em;
     line-height: 0.65;
     color: var(--color-nav-text);
+    transition: color var(--color-trans-duration);
 }
 
 .w-nav-social {
@@ -73,16 +77,13 @@ a.w-nav-breadcrumb:after {
 }
 
 .w-nav-title {
-    position: relative;
     font-family: "Lora", serif;
     font-weight: 500;
     font-size: 1.5em;
     padding-block-start: 0;
     max-height: 0;
     overflow: hidden;
-    transition-property: padding-block-start, max-height;
-    transition-duration: 0.2s;
-    transition-timing-function: linear;
+    transition: padding-block-start 0.3s, max-height 0.3s;
 }
 
 .w-nav-title.w-nav-title-show {
@@ -132,6 +133,10 @@ a.w-nav-breadcrumb:after {
 
 /* ----- PAGE CONTENT ----- */
 
+main {
+    padding-block-start: 3em;
+}
+
 h1 {
     font-size: 3.2em;
 }
@@ -149,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-header);
 }
 
-/* push fragment links down so the heading is visible under the nav header */
+/* push fragment links down so the heading is visible under the page header */
 article h2:before,
 article h3:before,
 article h4:before,

@@ -13,43 +13,46 @@ layout: default
     </div>
     <div class="w-nav-title" aria-hidden="true">{{ page.title }}</div>
 </header>
-<article>
-    <div class="w-section w-section-hero">
-        <div>
-            <h1 class="w-hero-title">{{ page.title }}</h1>
-            {%- if page.subtitle %}
-                <p class="w-hero-subtitle">{{ page.subtitle }}</p>
-            {% endif -%}
-            {%- if page.hero_image %}
-                <div class="w-hero-img">
-                    <img src="{{ page.hero_image }}">
-                </div>
-            {% endif -%}
-            {%- if page.date %}
-                <div>
-                    <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
-                        {{ page.date | date_to_long_string }}
-                    </time>
-                </div>
-            {% endif -%}
+<main>
+
+    <article>
+        <div class="w-section w-section-hero">
+            <div>
+                <h1 class="w-hero-title">{{ page.title }}</h1>
+                {%- if page.subtitle %}
+                    <p class="w-hero-subtitle">{{ page.subtitle }}</p>
+                {% endif -%}
+                {%- if page.hero_image %}
+                    <div class="w-hero-img">
+                        <img src="{{ page.hero_image }}">
+                    </div>
+                {% endif -%}
+                {%- if page.date %}
+                    <div>
+                        <time class="w-hero-date" datetime="{{ page.date | date_to_xmlschema }}">
+                            {{ page.date | date_to_long_string }}
+                        </time>
+                    </div>
+                {% endif -%}
+            </div>
         </div>
-    </div>
-    <div class="w-section w-section-content">
-        {%- case page.dropcap %}
-            {%- when "all" -%}
-                {%- assign dropcap_class = " w-dropcap-init w-dropcap-section" -%}
-            {%- when "init" -%}
-                {%- assign dropcap_class = " w-dropcap-init" -%}
-            {%- when "section" -%}
-                {%- assign dropcap_class = " w-dropcap-section" -%}
-            {%- else -%}
-                {%- assign dropcap_class = "" -%}
-        {% endcase -%}
-        <div class="w-content{{ dropcap_class }}">
-            {{ content }}
+        <div class="w-section w-section-content">
+            {%- case page.dropcap %}
+                {%- when "all" -%}
+                    {%- assign dropcap_class = " w-dropcap-init w-dropcap-section" -%}
+                {%- when "init" -%}
+                    {%- assign dropcap_class = " w-dropcap-init" -%}
+                {%- when "section" -%}
+                    {%- assign dropcap_class = " w-dropcap-section" -%}
+                {%- else -%}
+                    {%- assign dropcap_class = "" -%}
+            {% endcase -%}
+            <div class="w-content{{ dropcap_class }}">
+                {{ content }}
+            </div>
         </div>
-    </div>
-</article>
+    </article>
+</main>
 <script defer>
     const SHOW_TITLE_CLASS = "w-nav-title-show";
 
