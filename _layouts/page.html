@@ -5,10 +5,11 @@ layout: base
     <div class="p-nav-container">
         <span>
             {%- assign crumbs = page.url | remove: "/index.html" | split: "/" %}
-            {%- if crumbs.size == 1 -%}
+            {%- assign crumb_url = "" -%}
+            {%- if crumbs.size <= 1 -%}
                 <span class="p-nav-breadcrumb">{{ site.title }}</span>
             {%- else -%}
-                <a class="p-nav-breadcrumb">{{ site.title }}</a>
+                <a class="p-nav-breadcrumb" href="/">{{ site.title }}</a>
             {%- endif -%}
             {%- for crumb in crumbs offset: 1 -%}
                 {%- if forloop.last -%}
@@ -16,7 +17,8 @@ layout: base
                         <span class="p-nav-breadcrumb">{{ page.title | default: crumb }}</span>
                     {%- endunless -%}
                 {%- else -%}
-                    <a class="p-nav-breadcrumb">{{ crumb }}</a>
+                    {%- assign crumb_url = crumb_url | append: "/" | append: crumb -%}
+                    <a class="p-nav-breadcrumb" href="{{ crumb_url }}">{{ crumb }}</a>
                 {%- endif -%}
             {% endfor -%}
         </span>
