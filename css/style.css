@@ -4,29 +4,18 @@ body {
     margin: 0;
     font-size: 1.05em;
     background-color: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-text-body);
+    transition: color 0.2s linear, background-color 0.2s linear;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --color-bg: white;
-        --color-text: black;
-        --color-text-secondary: #808080;
-        --color-nav-bg: black;
-        --color-nav-text: #d0d0d0;
-        --color-nav-link-hover: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-bg: black;
-        --color-text: white;
-        --color-text-secondary: #e0e0e0;
-        --color-nav-bg: white;
-        --color-nav-text: #d0d0d0;
-        --color-nav-link-hover: black;
-    }
+:root {
+    --color-bg:             light-dark( #f7f7f7, #131212);
+    --color-text-body:      light-dark( #202024, #999999);
+    --color-text-header:    light-dark( #000000, #bbbbbb);
+    --color-text-secondary: light-dark( #808080, #909090);
+    --color-nav-bg:         light-dark( #000000, #303030);
+    --color-nav-text:       light-dark( #d0d0d0, #d0d0d0);
+    --color-nav-active:     light-dark( #ffffff, #ffffff);
 }
 
 /* ----- PAGE LAYOUT ----- */
@@ -67,7 +56,7 @@ body {
 }
 
 .w-nav-container a:hover {
-    color: var(--color-nav-link-hover);
+    color: var(--color-nav-active);
 }
 
 a.w-nav-breadcrumb:after {
@@ -80,6 +69,7 @@ a.w-nav-breadcrumb:after {
 .w-nav-social {
     line-height: 1;
     font-size: 1.2em;
+    flex-shrink: 0;
 }
 
 .w-nav-title {
@@ -155,6 +145,10 @@ h1, h2 {
     font-weight: 500;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-header);
+}
+
 /* push fragment links down so the heading is visible under the nav header */
 article h2:before,
 article h3:before,
@@ -186,6 +180,7 @@ hr {
     float: left;
     margin: 0.1em 0.1em 0.1em 0;
     line-height: 0.65;
+    color: var(--color-text-header);
 }
 
 @media print {
